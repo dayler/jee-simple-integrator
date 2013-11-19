@@ -38,8 +38,8 @@ public class Department implements Serializable {
     @Column(name = "LOCATION_ID", nullable = true)
     private double locationId;
     
-    @OneToMany(mappedBy = "Department", targetEntity = Employe.class, fetch = FetchType.EAGER)
-    private List<Employe> employes;
+    @OneToMany(mappedBy = "Department", targetEntity = Employee.class, fetch = FetchType.EAGER)
+    private List<Employee> employes;
 
     public double getDepartmentId() {
         return departmentId;
@@ -57,11 +57,11 @@ public class Department implements Serializable {
         this.name = name;
     }
 
-    public List<Employe> getEmployes() {
+    public List<Employee> getEmployes() {
         return employes;
     }
 
-    public void setEmployes(List<Employe> employes) {
+    public void setEmployes(List<Employee> employes) {
         this.employes = employes;
     }
 

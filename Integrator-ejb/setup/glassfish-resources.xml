@@ -12,4 +12,5 @@
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="Integrator-ejbPU" object-type="user" pool-name="mysql_staffRepository_rootPool"/>
     <jdbc-resource enabled="true" jndi-name="IntegratorRepository" object-type="user" pool-name="mysql_staffRepository_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="SimpleRepository" object-type="user" pool-name="mysql_staffRepository_rootPool"/>
 </resources>

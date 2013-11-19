@@ -2,7 +2,7 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
         <servlet-name>SimpleEmployees</servlet-name>
-        <servlet-class>org.proydesa.jee.integrator.controller.SimpleEmployees</servlet-class>
+        <servlet-class>org.proydesa.jee.integrator.controller.AllEmployees</servlet-class>
         <!-- <init-param>
             <param-name>param</param-name>
             <param-value>paramValue</param-value>
@@ -20,4 +20,10 @@
     <welcome-file-list>
         <welcome-file>SimpleEmployees</welcome-file>
     </welcome-file-list>
+    <ejb-ref>
+        <ejb-ref-name>EmployeeManager</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>org.proydesa.jee.integrator.bean.EmployeeManagerRemote</remote>
+        <ejb-link>SimpleEmployeeManager</ejb-link>
+    </ejb-ref>
 </web-app>

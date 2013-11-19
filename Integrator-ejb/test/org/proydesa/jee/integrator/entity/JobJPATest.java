@@ -31,7 +31,7 @@ public class JobJPATest {
     @BeforeClass
     public static void setUpClass() {
 //        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Integrator-ejbPU");
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Integrator-ejbPU");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Integrator-ejbPU", getEntityManagerConfig());
         assertNotNull("Null factory", factory);
         entityManager = factory.createEntityManager();
     }
