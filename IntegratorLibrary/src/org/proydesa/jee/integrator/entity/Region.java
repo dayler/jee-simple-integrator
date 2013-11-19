@@ -52,4 +52,12 @@ public class Region implements Serializable{
     public void setCountries(List<Country> countries) {
         this.countries = countries;
     }
+
+    public double getRegionId() {
+        return regionId;
+    }
+
+    public void setRegionId(double regionId) {
+        this.regionId = regionId;
+    }
 }
