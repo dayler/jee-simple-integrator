@@ -44,7 +44,7 @@
                     <td><%=emp.getLastName() %></td>
                     <td><%=emp.getFirstName() %></td>
                     <td><%=emp.getEmail() %></td>
-                    <td><%=emp.getJobId() %></td><!-- Change to get title -->
+                    <td><b>emp_getJobId</b></td><!-- Change to get title -->
                     <td><%=emp.getManagerId() %></td><!-- Change by manager name -->
                     <td><%=emp.getDepartmentId() %></td>
                     <td><input type="button" value="Details"/><input type="button" value="Delete"/></td>

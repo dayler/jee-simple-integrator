@@ -4,6 +4,7 @@
  */
 package org.proydesa.jee.integrator.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityExistsException;
@@ -21,65 +22,68 @@ import org.proydesa.jee.integrator.exception.OperationException;
 @Stateless
 public class SimpleEmployeeManager implements EmployeeManagerRemote, EmployeeManagerLocal {
 
-    @PersistenceContext
-    private EntityManager emanager;
+//    @PersistenceContext
+//    private EntityManager emanager;
 
     @Override
     public List<Employee> retrieveAllEmployees() {
-        Query query = emanager.createNamedQuery("select * from EMPLOYEES", Employee.class);
-        List<Employee> employees = query.getResultList();
-
-        return employees;
+//        Query query = emanager.createNamedQuery("select * from EMPLOYEES", Employee.class);
+//        List<Employee> employees = query.getResultList();
+//
+//        return employees;
+        return new ArrayList<Employee>();
     }
 
     @Override
     public void addEmployee(Employee employee) throws OperationException{
-        try {
-            if (employee == null) {
-                throw new OperationException("Employee to add is null");
-            } else {
-                emanager.persist(employee);
-            }
-        } catch (EntityExistsException ex) {
-            throw new OperationException("The Employee cannot be addedd", ex);
-        }
+//        try {
+//            if (employee == null) {
+//                throw new OperationException("Employee to add is null");
+//            } else {
+//                emanager.persist(employee);
+//            }
+//        } catch (EntityExistsException ex) {
+//            throw new OperationException("The Employee cannot be addedd", ex);
+//        }
     }
 
     @Override
     public void deleteEmployee(Employee employee) throws OperationException {
-        if (employee == null) {
-            throw new OperationException("Employee to delete is null.");
-        }
-
-        double employeeId = employee.getEmployeId();
-        Employee emp = emanager.find(Employee.class, employeeId);
-
-        if (emp == null) {
-            throw new OperationException("Employee record for " + employeeId + " was not found.");
-        } else {
-            emanager.remove(emp);
-        }
+//        if (employee == null) {
+//            throw new OperationException("Employee to delete is null.");
+//        }
+//
+//        double employeeId = employee.getEmployeId();
+//        Employee emp = emanager.find(Employee.class, employeeId);
+//
+//        if (emp == null) {
+//            throw new OperationException("Employee record for " + employeeId + " was not found.");
+//        } else {
+//            emanager.remove(emp);
+//        }
     }
 
     @Override
     public String getJobTitle(String jobId) throws OperationException {
-        Job simpleJob = emanager.find(Job.class, jobId);
-
-        if (simpleJob == null) {
-            throw new OperationException("Record for " + jobId + " was not foßund");
-        }
-
-        return simpleJob.getTitle();
+//        Job simpleJob = emanager.find(Job.class, jobId);
+//
+//        if (simpleJob == null) {
+//            throw new OperationException("Record for " + jobId + " was not foßund");
+//        }
+//
+//        return simpleJob.getTitle();
+        return "Job title";
     }
 
     @Override
     public Employee getEmployee(double employeeId) throws OperationException {
-        Employee emp = emanager.find(Employee.class, employeeId);
-
-        if (emp == null) {
-            throw new OperationException("Record for " + employeeId + " was not found.");
-        }
-
-        return emp;
+//        Employee emp = emanager.find(Employee.class, employeeId);
+//
+//        if (emp == null) {
+//            throw new OperationException("Record for " + employeeId + " was not found.");
+//        }
+//
+//        return emp;
+        return new Employee();
     }
 }

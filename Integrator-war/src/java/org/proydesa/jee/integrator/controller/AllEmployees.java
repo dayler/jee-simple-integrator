@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,9 +29,20 @@ import org.proydesa.jee.integrator.exception.OperationException;
  */
 public class AllEmployees extends HttpServlet {
 
-    @EJB
+    //@EJB
     private EmployeeManagerRemote employeeManager;
-
+    
+    public AllEmployees() {
+        super();
+        try {
+            Context ctx = new InitialContext();
+            employeeManager = (EmployeeManagerRemote) ctx.lookup("java:comp/env/EmployeeManager");
+        } catch (NamingException ex) {
+            Logger.getLogger(AllEmployees.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException(ex);
+        }
+    }
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      *
@@ -47,9 +61,12 @@ public class AllEmployees extends HttpServlet {
             rawEmployees.toArray(emplyees);
             request.setAttribute("employees", emplyees);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("employees.jsp");
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("employees.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("welcome.jsp");
             dispatcher.forward(request, response);
-        } catch (OperationException ex) {
+//        } catch (OperationException ex) {
+//            Logger.getLogger(AllEmployees.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Throwable ex) {
             Logger.getLogger(AllEmployees.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             // No op
