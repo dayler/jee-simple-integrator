@@ -22,19 +22,19 @@ import javax.persistence.Table;
  *
  * @author ariel
  */
-@Entity(name = "Region")
-@Table(name = "REGIONS")
+//@Entity(name = "Region")
+//@Table(name = "REGIONS")
 public class Region implements Serializable{
     
-    @Id
-    @Column(name = "REGION_ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Id
+//    @Column(name = "REGION_ID", nullable = false)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private double regionId;
     
-    @Column(name = "REGION_NAME", nullable = true)
+//    @Column(name = "REGION_NAME", nullable = true)
     private String name;
     
-    @OneToMany(mappedBy = "Customer", targetEntity = Country.class, fetch = FetchType.EAGER)
+//    @OneToMany(mappedBy = "Customer", targetEntity = Country.class, fetch = FetchType.EAGER)
     private List<Country> countries = Collections.EMPTY_LIST;
 
     public String getName() {

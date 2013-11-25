@@ -433,7 +433,7 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
                     </fileset>
                 </union>
                 <taskdef classname="org.testng.TestNGAntTask" classpath="${run.test.classpath}" name="testng"/>
-                <testng classfilesetref="test.set" failureProperty="tests.failed" methods="${testng.methods.arg}" mode="${testng.mode}" outputdir="${build.test.results.dir}" suitename="Integrator-ejb" testname="TestNG tests" workingDir="${basedir}">
+                <testng classfilesetref="test.set" failureProperty="tests.failed" listeners="org.testng.reporters.VerboseReporter" methods="${testng.methods.arg}" mode="${testng.mode}" outputdir="${build.test.results.dir}" suitename="Integrator-ejb" testname="TestNG tests" workingDir="${basedir}">
                     <xmlfileset dir="${build.test.classes.dir}" includes="@{testincludes}"/>
                     <propertyset>
                         <propertyref prefix="test-sys-prop."/>
@@ -827,20 +827,24 @@ exists or setup the property manually. For example like this:
     <target depends="compile,-library-inclusion-in-archive-weblogic,-library-inclusion-in-archive-by-user" name="library-inclusion-in-archive"/>
     <target if="is.jars.in.ejbjar" name="-library-inclusion-in-archive-by-user">
         <copyfiles files="${reference.IntegratorLibrary.jar}" todir="${build.classes.dir}"/>
-        <copyfiles files="${libs.hibernate-persistence.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.eclipselink.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${file.reference.mysql-connector-java-5.1.27-bin.jar}" todir="${build.classes.dir}"/>
     </target>
     <target if="is.server.weblogic" name="-library-inclusion-in-archive-weblogic">
         <basename file="${reference.IntegratorLibrary.jar}" property="manifest.reference.IntegratorLibrary.jar"/>
-        <basename file="${libs.hibernate-persistence.classpath}" property="manifest.libs.hibernate-persistence.classpath"/>
+        <basename file="${libs.eclipselink.classpath}" property="manifest.libs.eclipselink.classpath"/>
+        <basename file="${file.reference.mysql-connector-java-5.1.27-bin.jar}" property="manifest.file.reference.mysql-connector-java-5.1.27-bin.jar"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Extension-List" value="jar-1 jar-2 "/>
+            <attribute name="Extension-List" value="jar-1 jar-2 jar-3 "/>
             <attribute name="jar-1-Extension-Name" value="${manifest.reference.IntegratorLibrary.jar}"/>
-            <attribute name="jar-2-Extension-Name" value="${manifest.libs.hibernate-persistence.classpath}"/>
+            <attribute name="jar-2-Extension-Name" value="${manifest.libs.eclipselink.classpath}"/>
+            <attribute name="jar-3-Extension-Name" value="${manifest.file.reference.mysql-connector-java-5.1.27-bin.jar}"/>
         </manifest>
     </target>
     <target depends="compile" name="library-inclusion-in-manifest">
         <copyfiles files="${reference.IntegratorLibrary.jar}" todir="${dist.ear.dir}/lib"/>
-        <copyfiles files="${libs.hibernate-persistence.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.eclipselink.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.mysql-connector-java-5.1.27-bin.jar}" todir="${dist.ear.dir}/lib"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
     <target name="-copy-meta-inf">

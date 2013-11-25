@@ -21,24 +21,24 @@ import javax.persistence.Table;
  *
  * @author ariel
  */
-@Entity(name = "Department")
-@Table(name = "DEPARTMENTS")
+//@Entity(name = "Department")
+//@Table(name = "DEPARTMENTS")
 public class Department implements Serializable {
-    @Id
-    @Column(name = "DEPARTMENT_ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Id
+//    @Column(name = "DEPARTMENT_ID", nullable = false)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private double departmentId;
     
-    @Column(name = "DEPARTMENT_NAME", nullable = false)
+//    @Column(name = "DEPARTMENT_NAME", nullable = false)
     private String name;
     
-    @Column(name = "MANAGER_ID", nullable = true)
+//    @Column(name = "MANAGER_ID", nullable = true)
     private double managerId;
     
-    @Column(name = "LOCATION_ID", nullable = true)
+//    @Column(name = "LOCATION_ID", nullable = true)
     private double locationId;
     
-    @OneToMany(mappedBy = "Department", targetEntity = Employee.class, fetch = FetchType.EAGER)
+//    @OneToMany(mappedBy = "DEPARTMENTS", targetEntity = Employee.class, fetch = FetchType.EAGER)
     private List<Employee> employes;
 
     public double getDepartmentId() {

@@ -14,6 +14,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -47,8 +49,8 @@ public class Employee {
     @Temporal(TemporalType.DATE)
     private Date hireDate;
     
-    @Column(name = "JOB_ID", nullable = false)
-    private String jobId;
+//    @Column(name = "JOB_ID", nullable = false)
+//    private String jobId;
     
     @Column(name = "SALARY", nullable = true)
     private double salary;
@@ -62,8 +64,9 @@ public class Employee {
     @Column(name = "DEPARTMENT_ID", nullable = true)
     private double departmentId;
     
-    @OneToMany(mappedBy = "Employe", targetEntity = Job.class, fetch = FetchType.EAGER)
-    private List<Job> jobs;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "JOB_ID", nullable = false)
+    private Job job;
 
     public double getEmployeId() {
         return employeId;
@@ -113,13 +116,13 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
-    public String getJobId() {
-        return jobId;
-    }
-
-    public void setJobId(String jobId) {
-        this.jobId = jobId;
-    }
+//    public String getJobId() {
+//        return jobId;
+//    }
+//
+//    public void setJobId(String jobId) {
+//        this.jobId = jobId;
+//    }
 
     public double getSalary() {
         return salary;
@@ -153,11 +156,11 @@ public class Employee {
         this.departmentId = departmentId;
     }
 
-    public List<Job> getJobs() {
-        return jobs;
+    public Job getJob() {
+        return job;
     }
 
-    public void setJobs(List<Job> jobs) {
-        this.jobs = jobs;
+    public void setJob(Job job) {
+        this.job = job;
     }
 }

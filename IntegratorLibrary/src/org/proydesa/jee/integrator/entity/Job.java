@@ -6,9 +6,13 @@
 
 package org.proydesa.jee.integrator.entity;
 
+import java.util.Collections;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -18,6 +22,7 @@ import javax.persistence.Table;
 @Entity(name = "Job")
 @Table(name = "JOBS")
 public class Job {
+    
     @Id
     @Column(name = "JOB_ID", nullable = false)
     private String jobId;
@@ -30,6 +35,9 @@ public class Job {
     
     @Column(name = "MAX_SALARY", nullable = true)
     private double maxSalary;
+    
+    @OneToMany(mappedBy = "job", fetch = FetchType.LAZY)
+    private List<Employee> employees;
 
     public String getJobId() {
         return jobId;
@@ -61,5 +69,13 @@ public class Job {
 
     public void setMaxSalary(double maxSalary) {
         this.maxSalary = maxSalary;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }

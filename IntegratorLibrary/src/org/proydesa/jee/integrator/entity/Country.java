@@ -20,21 +20,21 @@ import javax.persistence.Table;
  *
  * @author ariel
  */
-@Entity(name = "Conuntry")
-@Table(name = "COUNTRIES")
+//@Entity(name = "Conuntry")
+//@Table(name = "COUNTRIES")
 public class Country implements Serializable {
     
-    @Id
-    @Column(name = "COUNTRY_ID", nullable = false)
+//    @Id
+//    @Column(name = "COUNTRY_ID", nullable = false)
     private String countryId;
     
-    @Column(name = "COUNTRY_NAME", nullable = true)
+//    @Column(name = "COUNTRY_NAME", nullable = true)
     private String name;
     
-    @Column(name = "REGION_ID")
+//    @Column(name = "REGION_ID")
     private float regionId;
     
-    @OneToMany(mappedBy = "Country", targetEntity = Location.class, fetch = FetchType.EAGER)
+//    @OneToMany(mappedBy = "Country", targetEntity = Location.class, fetch = FetchType.EAGER)
     private List<Location> locations = Collections.EMPTY_LIST;
 
     public String getCountryId() {

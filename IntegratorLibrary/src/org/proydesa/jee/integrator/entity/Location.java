@@ -22,30 +22,31 @@ import javax.persistence.Table;
  *
  * @author ariel
  */
-@Entity(name = "Location")
-@Table(name = "LOCATIONS")
+//@Entity(name = "Location")
+//@Table(name = "LOCATIONS")
 public class Location implements Serializable {
-    @Id
-    @Column(name = "LOCATION_ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Id
+//    @Column(name = "LOCATION_ID", nullable = false)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private double locationId;
     
-    @Column(name = "STREET_ADDRESS", nullable = true)
+//    @Column(name = "STREET_ADDRESS", nullable = true)
     private String streetAddress;
     
-    @Column(name = "POSTAL_CODE", nullable = true)
+//    @Column(name = "POSTAL_CODE", nullable = true)
     private String postalCode;
     
-    @Column(name = "CITY", nullable = false)
+//    @Column(name = "CITY", nullable = false)
     private String city;
     
-    @Column(name = "STATE_PROVINCE", nullable = true)
+//    @Column(name = "STATE_PROVINCE", nullable = true)
     private String stateProvince;
     
-    @Column(name = "COUNTRY_ID", nullable = true)
+//    @Column(name = "COUNTRY_ID", nullable = true)
     private String countyId;
     
-    @OneToMany(mappedBy = "Location", targetEntity = Department.class, fetch = FetchType.EAGER)
+    // fetch = FetchType.LAZY, mappedBy = "stock"
+//    @OneToMany(mappedBy = "LOCATIONS", targetEntity = Department.class, fetch = FetchType.EAGER)
     private List<Department> departments = Collections.EMPTY_LIST;
 
     public String getStreetAddress() {
