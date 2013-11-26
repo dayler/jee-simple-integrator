@@ -17,6 +17,10 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>EmployeeOperationHandler</servlet-name>
+        <servlet-class>org.proydesa.jee.integrator.controller.EmployeeOperationHandler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SimpleEmployees</servlet-name>
         <url-pattern>/SimpleEmployees</url-pattern>
@@ -25,13 +29,16 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmployeeOperationHandler</servlet-name>
+        <url-pattern>/EmployeeOperationHandler</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <!-- <welcome-file>faces/welcome.jsp</welcome-file> -->
         <welcome-file>SimpleEmployees</welcome-file>
     </welcome-file-list>
     <ejb-ref>

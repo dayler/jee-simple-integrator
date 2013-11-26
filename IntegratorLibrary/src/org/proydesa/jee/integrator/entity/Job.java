@@ -6,6 +6,7 @@
 
 package org.proydesa.jee.integrator.entity;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 import javax.persistence.Column;
@@ -21,7 +22,9 @@ import javax.persistence.Table;
  */
 @Entity(name = "Job")
 @Table(name = "JOBS")
-public class Job {
+public class Job implements Serializable {
+    
+    public static final long serialVersionUID = 11262013L;
     
     @Id
     @Column(name = "JOB_ID", nullable = false)
@@ -36,7 +39,7 @@ public class Job {
     @Column(name = "MAX_SALARY", nullable = true)
     private double maxSalary;
     
-    @OneToMany(mappedBy = "job", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "job", fetch = FetchType.EAGER)
     private List<Employee> employees;
 
     public String getJobId() {

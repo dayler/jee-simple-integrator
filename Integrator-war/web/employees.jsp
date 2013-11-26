@@ -15,12 +15,16 @@
     <body>
         <h1>All Employees</h1>
         <br/>
-        <table>
-            <tr><imput type="button" value="Add Employee"/></tr>
+        <table cellpadding='4' border='1'>
+            <tr>
+                <td>
+                    <a href="AddEmployee.jsp"> Add Employee</a>
+                </td>
+            </tr>
         </table>
         <br/>
         <br/>
-        <table>
+        <table border="1" cellpadding="10" >
             <thead>
                 <tr>
                     <th>ID</th>
@@ -44,10 +48,17 @@
                     <td><%=emp.getLastName() %></td>
                     <td><%=emp.getFirstName() %></td>
                     <td><%=emp.getEmail() %></td>
-                    <td><b>emp_getJobId</b></td><!-- Change to get title -->
+                    <td><%=emp.getJob().getTitle()%></td><!-- Change to get title -->
                     <td><%=emp.getManagerId() %></td><!-- Change by manager name -->
                     <td><%=emp.getDepartmentId() %></td>
-                    <td><input type="button" value="Details"/><input type="button" value="Delete"/></td>
+                    <td>
+                        <% 
+                        //String selectLink="deletedefect.do?DefectID="${myCollection.defectId}";
+                        String selectedId = Double.toString(emp.getEmployeId());
+                        %>
+                        <a href='<%= "EmployeeOperationHandler?submit=DeleteEmployee&employeeId=" + selectedId %>'>Delete</a>
+                    </td>
+                    
                 </tr>
                 <%
                     }

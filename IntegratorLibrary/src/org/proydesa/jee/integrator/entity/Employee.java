@@ -6,8 +6,8 @@
 
 package org.proydesa.jee.integrator.entity;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +16,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,12 +26,15 @@ import javax.persistence.TemporalType;
  */
 @Entity(name = "Employee")
 @Table(name = "EMPLOYEES")
-public class Employee {
-    @Id
-    @Column(name = "EMPLOYEE_ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private double employeId;
+public class Employee implements Serializable{
     
+    public static final long serialVersionUID = 11262013L;
+    
+    @Id
+    @Column(name = "EMPLOYEE_ID")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private double employeId;
+
     @Column(name = "FIRST_NAME", nullable = false)
     private String firstName;
     
@@ -48,10 +50,7 @@ public class Employee {
     @Column(name = "HIRE_DATE", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date hireDate;
-    
-//    @Column(name = "JOB_ID", nullable = false)
-//    private String jobId;
-    
+
     @Column(name = "SALARY", nullable = true)
     private double salary;
     
@@ -64,7 +63,7 @@ public class Employee {
     @Column(name = "DEPARTMENT_ID", nullable = true)
     private double departmentId;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "JOB_ID", nullable = false)
     private Job job;
 
@@ -116,14 +115,6 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
-//    public String getJobId() {
-//        return jobId;
-//    }
-//
-//    public void setJobId(String jobId) {
-//        this.jobId = jobId;
-//    }
-
     public double getSalary() {
         return salary;
     }
@@ -156,11 +147,11 @@ public class Employee {
         this.departmentId = departmentId;
     }
 
-    public Job getJob() {
-        return job;
-    }
-
-    public void setJob(Job job) {
-        this.job = job;
-    }
+        public Job getJob() {
+            return job;
+        }
+    
+        public void setJob(Job job) {
+            this.job = job;
+        }
 }

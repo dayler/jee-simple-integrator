@@ -7,6 +7,7 @@ package org.proydesa.jee.integrator.bean;
 import java.util.List;
 import javax.ejb.Remote;
 import org.proydesa.jee.integrator.entity.Employee;
+import org.proydesa.jee.integrator.entity.Job;
 import org.proydesa.jee.integrator.exception.OperationException;
 
 /**
@@ -17,7 +18,8 @@ import org.proydesa.jee.integrator.exception.OperationException;
 public interface EmployeeManagerRemote {
     List<Employee> retrieveAllEmployees() throws OperationException;
     void addEmployee(Employee employee) throws OperationException;
-    void deleteEmployee(Employee employee) throws OperationException;
+    void deleteEmployee(double employeeId) throws OperationException;
     String getJobTitle(String jobId) throws OperationException;
     Employee getEmployee(double employeeId) throws OperationException;
+    Job getJob(String jobId) throws OperationException;
 }

@@ -61,8 +61,7 @@ public class AllEmployees extends HttpServlet {
             rawEmployees.toArray(emplyees);
             request.setAttribute("employees", emplyees);
 
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("employees.jsp");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("welcome.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("employees.jsp");
             dispatcher.forward(request, response);
 //        } catch (OperationException ex) {
 //            Logger.getLogger(AllEmployees.class.getName()).log(Level.SEVERE, null, ex);
