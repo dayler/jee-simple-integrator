@@ -29,19 +29,19 @@ import org.proydesa.jee.integrator.exception.OperationException;
  */
 public class AllEmployees extends HttpServlet {
 
-    //@EJB
+    @EJB
     private EmployeeManagerRemote employeeManager;
     
-    public AllEmployees() {
-        super();
-        try {
-            Context ctx = new InitialContext();
-            employeeManager = (EmployeeManagerRemote) ctx.lookup("java:comp/env/EmployeeManager");
-        } catch (NamingException ex) {
-            Logger.getLogger(AllEmployees.class.getName()).log(Level.SEVERE, null, ex);
-            throw new RuntimeException(ex);
-        }
-    }
+//    public AllEmployees() {
+//        super();
+//        try {
+//            Context ctx = new InitialContext();
+//            employeeManager = (EmployeeManagerRemote) ctx.lookup("java:comp/env/EmployeeManager");
+//        } catch (NamingException ex) {
+//            Logger.getLogger(AllEmployees.class.getName()).log(Level.SEVERE, null, ex);
+//            throw new RuntimeException(ex);
+//        }
+//    }
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.

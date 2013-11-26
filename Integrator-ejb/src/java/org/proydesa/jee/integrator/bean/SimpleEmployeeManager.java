@@ -6,6 +6,7 @@ package org.proydesa.jee.integrator.bean;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
@@ -22,16 +23,20 @@ import org.proydesa.jee.integrator.exception.OperationException;
 @Stateless
 public class SimpleEmployeeManager implements EmployeeManagerRemote, EmployeeManagerLocal {
 
-//    @PersistenceContext
-//    private EntityManager emanager;
+    @PersistenceContext
+    private EntityManager emanager;
 
     @Override
     public List<Employee> retrieveAllEmployees() {
-//        Query query = emanager.createNamedQuery("select * from EMPLOYEES", Employee.class);
-//        List<Employee> employees = query.getResultList();
-//
-//        return employees;
-        return new ArrayList<Employee>();
+        try {
+        Query query = emanager.createQuery("select emp from Employee emp", Employee.class);
+        List<Employee> employees = query.getResultList();
+
+        return employees;
+        } catch (Exception ex) {
+            throw new EJBException(ex);
+        }
+//        return new ArrayList<Employee>();
     }
 
     @Override
@@ -86,4 +91,12 @@ public class SimpleEmployeeManager implements EmployeeManagerRemote, EmployeeMan
 //        return emp;
         return new Employee();
     }
+
+    public EntityManager getEmanager() {
+        return emanager;
+    }
+
+    public void setEmanager(EntityManager emanager) {
+        this.emanager = emanager;
+    } 
 }
